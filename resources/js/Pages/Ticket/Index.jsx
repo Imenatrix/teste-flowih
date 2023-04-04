@@ -30,7 +30,7 @@ export default function (props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
-                    <div className='flex justify-end space-x-3'>
+                    <div className='flex sm:space-x-3 space-y-3 sm:space-y-0 flex-wrap sm:flex-nowrap'>
                         <TextInput
                             id="title"
                             name="title"
@@ -42,18 +42,20 @@ export default function (props) {
                             onChange={(e) => setData('title', e.target.value)}
                             required
                         />
-                        <Select value={data.status} onChange={(e) => setData('status', e.target.value)}>
-                            <option value='open'>Open</option>
-                            <option value='closed'>Closed</option>
-                            <option value='all'>All</option>
-                        </Select>
-                        <Select value={data.orderBy} onChange={(e) => setData('orderBy', e.target.value)}>
-                            <option value='newest'>Newest</option>
-                            <option value='oldest'>Oldest</option>
-                        </Select>
-                        <PrimaryButton onClick={submit}>Filter</PrimaryButton>
-                        <div className="flex-1"></div>
-                        <PrimaryButtonLink  href={route('tickets.create')}>Post new issue</PrimaryButtonLink>
+                        <div className='flex-1 flex justify-end space-x-3'>
+                            <Select value={data.status} onChange={(e) => setData('status', e.target.value)}>
+                                <option value='open'>Open</option>
+                                <option value='closed'>Closed</option>
+                                <option value='all'>All</option>
+                            </Select>
+                            <Select value={data.orderBy} onChange={(e) => setData('orderBy', e.target.value)}>
+                                <option value='newest'>Newest</option>
+                                <option value='oldest'>Oldest</option>
+                            </Select>
+                            <PrimaryButton onClick={submit}>Filter</PrimaryButton>
+                            <div className="flex-1"></div>
+                            <PrimaryButtonLink  href={route('tickets.create')}>Post new issue</PrimaryButtonLink>
+                        </div>
                     </div>
                     {
                         tickets.map(ticket => (
