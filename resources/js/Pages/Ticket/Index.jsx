@@ -1,5 +1,5 @@
 import { default as AuthenticatedLayout } from '@/Layouts/AuthenticatedLayout'
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 
 export default function (props) {
 
@@ -17,9 +17,9 @@ export default function (props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
                     {
                         tickets.map(ticket => (
-                            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <Link as='div' className="bg-white overflow-hidden shadow-sm sm:rounded-lg" href={route('tickets.show', {id: ticket.id})}>
                                 <div className="p-6 text-gray-900">{ticket.title}</div>
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>
