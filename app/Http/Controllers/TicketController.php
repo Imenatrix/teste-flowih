@@ -41,7 +41,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        $comments = Comment::where('ticket_id', $ticket->id)->with('user')->paginate(5);
+        $comments = Comment::where('ticket_id', $ticket->id)->with('user')->orderBy('created_at', 'desc')->paginate(5);
         return Inertia::render('Ticket/Show', ['ticket' => $ticket, 'comments' => $comments]);
     }
 
