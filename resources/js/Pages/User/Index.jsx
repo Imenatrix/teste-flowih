@@ -34,9 +34,9 @@ export default function (props) {
                             </div>
                         ))
                     }
+                    <Paginator links={links}/>
                 </div>
             </div>
-            <Paginator links={links}/>
         </AuthenticatedLayout>
     )
 }
