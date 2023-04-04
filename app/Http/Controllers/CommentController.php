@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     public function __construct() {
+        $this->authorizeResource(Comment::class);
         $this->middleware('auth');
     }
     /**

@@ -12,6 +12,7 @@ use Inertia\Inertia;
 class TicketController extends Controller
 {
     public function __construct() {
+        $this->authorizeResource(Ticket::class);
         $this->middleware('auth')->except(['index', 'show']);
     }
     /**
