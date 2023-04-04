@@ -41,4 +41,6 @@ Route::get('/users', function () {
     return Inertia::render('User/Index', ['users' => User::all()]);
 });
 
+Route::resource('/tickets', TicketController::class);
+
 require __DIR__.'/auth.php';
