@@ -39,14 +39,14 @@ export default function (props) {
             header={
                 <div className='flex items-center space-x-3'>
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">{ticket.title}</h2>
-                    {auth.user?.role == 'admin' &&
-                        <PrimaryButton className={ticket.open ? ' bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-600' : ' bg-red-500 hover:bg-red-400 focus:bg-red-400 active:bg-red-600'} onClick={dispatchToggleOpen}>
-                            {ticket.open ? 'Open' : 'Closed'}
+                    <PrimaryButton className={ticket.open ? ' bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-600' : ' bg-red-500 hover:bg-red-400 focus:bg-red-400 active:bg-red-600'} onClick={auth.user?.role == 'admin' && dispatchToggleOpen}>
+                        {ticket.open ? 'Open' : 'Closed'}
+                        {auth.user?.role == 'admin' &&
                             <span class="material-symbols-outlined ml-1">
                                 settings
                             </span>
-                        </PrimaryButton>
-                    }
+                        }
+                    </PrimaryButton>
                     {auth.user?.id == ticket.user_id && <>
                         <div className="flex-1"></div>
                         <PrimaryButtonLink className='bg-yellow-500 hover:bg-yellow-400 focus:bg-orange-500 active:bg-orange-500' href={route('tickets.edit', {id : ticket.id})}>Edit</PrimaryButtonLink>
