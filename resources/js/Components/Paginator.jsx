@@ -9,7 +9,7 @@ export default function Paginator(props) {
             <nav aria-label="Page navigation example">
                 <ul className="flex list-style-none">
                     {links.map((link) => (
-                        <li>
+                        <li className="hidden first:inline last:inline md:inline">
                             <Link
                                 as='div'
                                 data={params}
