@@ -25,6 +25,20 @@ export default function Authenticated({ user, header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('tickets.index')} active={route().current('tickets.index')}>
+                                    Issue Tickets
+                                </NavLink>
+                            </div>
+
+                            {user.role == 'admin' &&
+                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <NavLink href={route('users.index')} active={route().current('users.index')}>
+                                        Users
+                                    </NavLink>
+                                </div>
+                            }
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -96,6 +110,20 @@ export default function Authenticated({ user, header, children }) {
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('tickets.index')} active={route().current('tickets.index')}>
+                            Issue Tickets
+                        </ResponsiveNavLink>
+                    </div>
+                            
+                    {user.role == 'admin' &&
+                        <div className="pt-2 pb-3 space-y-1">
+                            <ResponsiveNavLink href={route('users.index')} active={route().current('users.index')}>
+                                Users
+                            </ResponsiveNavLink>
+                        </div>
+                    }
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
