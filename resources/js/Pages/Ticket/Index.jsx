@@ -22,8 +22,9 @@ export default function (props) {
                     </div>
                     {
                         tickets.map(ticket => (
-                            <Link as='div' className="bg-white overflow-hidden shadow-sm sm:rounded-lg" href={route('tickets.show', {id: ticket.id})}>
-                                <div className="p-6 text-gray-900">{ticket.title}</div>
+                            <Link as='div' className="bg-white overflow-hidden shadow-sm sm:rounded-lg flex items-center px-3 py-6 space-x-3" href={route('tickets.show', {id: ticket.id})}>
+                                <div className={'rounded-full w-7 h-7' + (ticket.open ? ' bg-green-500' : ' bg-red-500')}></div>
+                                <div className="text-gray-900">{ticket.title}</div>
                             </Link>
                         ))
                     }
