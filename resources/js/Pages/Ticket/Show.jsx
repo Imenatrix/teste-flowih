@@ -4,10 +4,13 @@ import TextInput from '@/Components/TextInput'
 import InputLabel from '@/Components/InputLabel'
 import InputError from '@/Components/InputError'
 import PrimaryButton from '@/Components/PrimaryButton'
+import Paginator from '@/Components/Paginator'
 
 export default function (props) {
 
     const ticket = props.ticket
+    const comments = props.comments.data
+    const links = props.comments.links
     const auth = props.auth
 
     const { data, setData, post, processing, errors } = useForm({
@@ -55,13 +58,14 @@ export default function (props) {
                                 </PrimaryButton>
                             </div>
                         </form>
-                        {ticket.comments.map(comment => (
+                        {comments.map(comment => (
                             <div>
-                                <div>{comment.user.name} - {new Date(ticket.comments[0].created_at).toLocaleString()}</div>
+                                <div>{comment.user.name} - {new Date(comment.created_at).toLocaleString()}</div>
                                 <div className='p-3 text-gray-600'>{comment.body}</div>
                                 <hr className='border-gray-300'/>
                             </div>
                         ))}
+                        <Paginator links={links}/>
                     </div>
                 </div>
             </div>

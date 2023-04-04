@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Models\Comment;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -40,8 +41,8 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        $ticket = Ticket::with('comments', 'comments.user')->find($ticket->id);
-        return Inertia::render('Ticket/Show', ['ticket' => $ticket]);
+        $comments = Comment::where('ticket_id', $ticket->id)->with('user')->paginate(5);
+        return Inertia::render('Ticket/Show', ['ticket' => $ticket, 'comments' => $comments]);
     }
 
     /**
