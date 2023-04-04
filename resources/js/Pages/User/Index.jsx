@@ -1,9 +1,11 @@
 import { default as AuthenticatedLayout } from '@/Layouts/AuthenticatedLayout'
 import { Head, Link } from '@inertiajs/react'
+import Paginator from '@/Components/Paginator'
 
 export default function (props) {
 
-    const users = props.users
+    const users = props.users.data
+    const links = props.users.links
     const auth = props.auth
 
     return (
@@ -34,6 +36,7 @@ export default function (props) {
                     }
                 </div>
             </div>
+            <Paginator links={links}/>
         </AuthenticatedLayout>
     )
 }
