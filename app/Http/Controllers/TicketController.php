@@ -38,6 +38,7 @@ class TicketController extends Controller
 
         $params = $validator->fails() ? self::$default_params : $request->all();
 
+        // Needed, otherwise it will interfere with pagination.
         unset($params['page']);
 
         $tickets = Ticket::select();
