@@ -1,5 +1,6 @@
 import Paginator from '@/Components/Paginator'
 import PrimaryButton from '@/Components/PrimaryButton'
+import Select from '@/Components/Select'
 import TextInput from '@/Components/TextInput'
 import { default as AuthenticatedLayout } from '@/Layouts/AuthenticatedLayout'
 import { Head, Link, useForm } from '@inertiajs/react'
@@ -40,15 +41,15 @@ export default function (props) {
                             onChange={(e) => setData('title', e.target.value)}
                             required
                         />
-                        <select className='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm' value={data.status} onChange={(e) => setData('status', e.target.value)}>
+                        <Select value={data.status} onChange={(e) => setData('status', e.target.value)}>
                             <option value='open'>Open</option>
                             <option value='closed'>Closed</option>
                             <option value='all'>All</option>
-                        </select>
-                        <select className='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm' value={data.orderBy} onChange={(e) => setData('orderBy', e.target.value)}>
+                        </Select>
+                        <Select value={data.orderBy} onChange={(e) => setData('orderBy', e.target.value)}>
                             <option value='newest'>Newest</option>
                             <option value='oldest'>Oldest</option>
-                        </select>
+                        </Select>
                         <PrimaryButton onClick={submit}>Filter</PrimaryButton>
                         <div className="flex-1"></div>
                         <Link className='inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150' href={route('tickets.create')}>Post new issue</Link>

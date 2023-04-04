@@ -5,6 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { default as AuthenticatedLayout } from '@/Layouts/AuthenticatedLayout'
+import Select from '@/Components/Select'
 
 export default function Register(props) {
 
@@ -77,11 +78,11 @@ export default function Register(props) {
                         <div className="mt-4">
                             <InputLabel htmlFor="role" value="Role" />
 
-                            <select className='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full' value={data.role} onChange={(e) => setData('role', e.target.value)}>
+                            <Select className='w-full' value={data.role} onChange={(e) => setData('role', e.target.value)}>
                                 <option value='user'>User</option>
                                 <option value='admin'>Admin</option>
-                            </select>
-
+                            </Select>
+                            
                             <InputError message={errors.role} className="mt-2" />
                         </div>
 
