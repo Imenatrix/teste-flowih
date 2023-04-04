@@ -21,7 +21,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Ticket/Index', ['tickets' => Ticket::paginate(20)]);
+        return Inertia::render('Ticket/Index', ['tickets' => Ticket::orderBy('created_at', 'desc')->paginate(20)]);
     }
 
     /**
