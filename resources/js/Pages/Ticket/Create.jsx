@@ -4,8 +4,13 @@ import PrimaryButton from '@/Components/PrimaryButton'
 import TextInput from '@/Components/TextInput'
 import { Head, useForm } from '@inertiajs/react'
 import { default as AuthenticatedLayout } from '@/Layouts/AuthenticatedLayout'
+import { useState } from 'react'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export default function (props) {
+
+    const [mode, setMode] = useState('edit')
 
     const auth = props.auth
     const { data, setData, post, processing, errors } = useForm({
@@ -48,17 +53,32 @@ export default function (props) {
                         <div className="mt-4">
                             <InputLabel htmlFor="body" value="Description" />
 
-                            <TextInput
-                                id="body"
-                                type="textarea"
-                                rows="10"
-                                name="body"
-                                value={data.body}
-                                className="mt-1 block w-full"
-                                autoComplete="body"
-                                onChange={(e) => setData('body', e.target.value)}
-                                required
-                            />
+                            <div className='border border-gray-400 rounded overflow-hidden'>
+                                <div className='flex bg-gray-300'>
+                                    <div onClick={() => setMode('edit')} className={'p-2  border border-transparent ' + (mode == 'edit' ? 'bg-slate-100 border-r-gray-400' : 'border-b-gray-400')}>
+                                        Edit
+                                    </div>
+                                    <div onClick={() => setMode('preview')} className={'p-2 border border-transparent ' + (mode == 'preview' ? 'bg-slate-100 border-r-gray-400 border-l-gray-400' : 'border-b-gray-400')}>
+                                        Preview
+                                    </div>
+                                    <div className='flex-1 border border-transparent border-b-gray-400'></div>
+                                </div>
+                                {mode == 'edit' &&
+                                    <TextInput
+                                        id="body"
+                                        type="textarea"
+                                        name="body"
+                                        value={data.body}
+                                        className="mt-3 block w-full h-96"
+                                        autoComplete="body"
+                                        onChange={(e) => setData('body', e.target.value)}
+                                        required
+                                    />
+                                }
+                                {mode == 'preview' &&
+                                    <ReactMarkdown className='max-w-none p-3 prose h-96 overflow-y-auto' remarkPlugins={[remarkGfm]}>{data.body}</ReactMarkdown>
+                                }
+                            </div>
 
                             <InputError message={errors.body} className="mt-2" />
                         </div>
