@@ -46,7 +46,7 @@ export default function (props) {
                     }
                     {auth.user?.id == ticket.user_id && <>
                         <div className="flex-1"></div>
-                        <Link className='inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 focus:bg-orange-500 active:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150' href={route('tickets.create')}>Edit</Link>
+                        <Link className='inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 focus:bg-orange-500 active:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150' href={route('tickets.edit', {id : ticket.id})}>Edit</Link>
                     </>}
                 </div>
             }
