@@ -64,7 +64,7 @@ Pagina de listagem de tickets.
 
 - /tickets/create
 
-Pagina de criação de novos tickets.
+Pagina de criação de novos tickets. O corpo dos tickets pode ser escrito em Markdown.
 
 ![Pagina de criação de tickets](./screenshots/tickets_create.png)
 
