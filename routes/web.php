@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('/users', UserController::class);
+Route::resource('/users', UserController::class)->middleware('role:admin');
 Route::resource('/tickets', TicketController::class);
 Route::resource('/comments', CommentController::class);
 
