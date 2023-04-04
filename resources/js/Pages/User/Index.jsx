@@ -1,9 +1,11 @@
 import { default as AuthenticatedLayout } from '@/Layouts/AuthenticatedLayout'
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 
 export default function (props) {
+
     const users = props.users
     const auth = props.auth
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -16,7 +18,10 @@ export default function (props) {
                     {
                         users.map(user => (
                             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                <div className="p-6 text-gray-900">{user.name} - {user.role}</div>
+                                <div className="p-6 text-gray-900">
+                                    {user.name} - {user.role}
+                                    <Link as='button' method='delete' href={route('users.destroy', {id : user.id})}>Delete</Link>
+                                </div>
                             </div>
                         ))
                     }
