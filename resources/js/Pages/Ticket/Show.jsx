@@ -6,6 +6,8 @@ import InputError from '@/Components/InputError'
 import PrimaryButton from '@/Components/PrimaryButton'
 import Paginator from '@/Components/Paginator'
 import PrimaryButtonLink from '@/Components/PrimaryButtonLink'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export default function (props) {
 
@@ -57,7 +59,7 @@ export default function (props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
                     <div className='font-bold'>Description:</div>
-                    <div className='p-3'>{ticket.body}</div>
+                    <ReactMarkdown className='p-3 prose' remarkPlugins={[remarkGfm]}>{ticket.body}</ReactMarkdown>
                     <div className='font-bold'>Comments:</div>
                     <div className='px-3 space-y-3'>
                         <form className='border rounded-lg p-2 space-y-2 border-gray-300' onSubmit={submit}>
