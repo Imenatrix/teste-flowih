@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Comment;
 use App\Models\Ticket;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -72,5 +73,11 @@ class TicketController extends Controller
     public function destroy(Ticket $ticket)
     {
         //
+    }
+
+    public function toggleOpen(Ticket $ticket, Request $request) {
+        $ticket->open = !$ticket->open;
+        $ticket->save();
+        return redirect()->route('tickets.show', ['ticket' => $ticket]);
     }
 }

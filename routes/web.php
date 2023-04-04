@@ -43,4 +43,6 @@ Route::resource('/users', UserController::class)->middleware('role:admin');
 Route::resource('/tickets', TicketController::class);
 Route::resource('/comments', CommentController::class);
 
+Route::put('/tickets/{ticket}/open', [TicketController::class, 'toggleOpen'])->middleware('role:admin')->name('tickets.toggle_open');
+
 require __DIR__.'/auth.php';

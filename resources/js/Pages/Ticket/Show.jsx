@@ -18,17 +18,32 @@ export default function (props) {
         body : ''
     });
 
+    const { put : dispatchToggleOpenRequest } = useForm()
+
     const submit = (e) => {
         e.preventDefault();
         post(route('comments.store'));
     };
 
+    const dispatchToggleOpen = (e) => {
+        e.preventDefault();
+        dispatchToggleOpenRequest(route('tickets.toggle_open', {id : ticket.id}))
+    }
+
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <div className='flex items-center'>
+                <div className='flex items-center space-x-3'>
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">{ticket.title}</h2>
+                    {auth.user?.role == 'admin' &&
+                        <button className={'inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150' + (ticket.open ? ' bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-600' : ' bg-red-500 hover:bg-red-400 focus:bg-red-400 active:bg-red-600')} onClick={dispatchToggleOpen}>
+                            {ticket.open ? 'Open' : 'Closed'}
+                            <span class="material-symbols-outlined ml-1">
+                                settings
+                            </span>
+                        </button>
+                    }
                     {auth.user?.id == ticket.user_id && <>
                         <div className="flex-1"></div>
                         <Link className='inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 focus:bg-orange-500 active:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150' href={route('tickets.create')}>Edit</Link>
