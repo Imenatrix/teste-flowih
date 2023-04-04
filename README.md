@@ -60,11 +60,15 @@ $ docker-compose exec laravel-app php artisan <comando>
 
 Pagina de listagem de tickets.
 
+![Pagina dos tickets](./screenshots/tickets.png)
+
 - /tickets/create
 
 Pagina de criação de novos tickets.
 
-- /tickets/edit{ticket}
+![Pagina de criação de tickets](./screenshots/tickets_create.png)
+
+- /tickets/edit/{ticket}
 
 Pagina de edição de ticket; restrito ao usuário que abriu o ticket.
 
@@ -72,6 +76,10 @@ Pagina de edição de ticket; restrito ao usuário que abriu o ticket.
 
 Pagina de listagem de usuários; restrito aos administradores.
 
+![Pagina dos usuários](./screenshots/users.png)
+
 - /users/create
 
 Pagina de criação de usuário especial para admins, só é possivel criar outros admins por essa página.
+
+![Pagina de criação de usuários](./screenshots/users_create.png)
