@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class TicketController extends Controller
@@ -22,7 +23,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Ticket/Create');
     }
 
     /**
@@ -30,7 +31,8 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request)
     {
-        //
+        $ticket = Ticket::create([...$request->validated(), 'user_id' => Auth::user()->id]);
+        return redirect()->route('tickets.show', ['ticket' => $ticket]);
     }
 
     /**
