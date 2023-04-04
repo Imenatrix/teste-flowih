@@ -8,20 +8,44 @@ use App\Models\Comment;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class TicketController extends Controller
 {
+    private static $default_params = [
+        'status' => 'open',
+        'orderBy' => 'newest',
+        'title' => ''
+    ];
+
     public function __construct() {
         $this->authorizeResource(Ticket::class);
         $this->middleware('auth')->except(['index', 'show']);
     }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Ticket/Index', ['tickets' => Ticket::orderBy('created_at', 'desc')->paginate(20)]);
+        $validator = Validator::make($request->all(), [
+            'title' => 'nullable|string',
+            'orderBy' => ['required', Rule::in(['newest', 'oldest'])],
+            'status' => ['required', Rule::in(['open', 'closed', 'all'])],
+        ]);
+
+        $params = $validator->fails() ? self::$default_params : $request->all();
+
+        unset($params['page']);
+
+        $tickets = Ticket::select();
+        $tickets = $params['status'] != 'all' ? $tickets->where('open', $params['status'] == 'open') : $tickets;
+        $tickets = $tickets->orderBy('created_at', $params['orderBy'] == 'newest' ? 'desc' : 'asc');
+        $tickets = $tickets->where('title', 'like', '%'.$params['title'].'%');
+
+        return Inertia::render('Ticket/Index', ['tickets' => $tickets->paginate(20), 'params' => $params]);
     }
 
     /**
