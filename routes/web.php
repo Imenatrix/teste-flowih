@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
@@ -40,5 +41,6 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('/users', UserController::class);
 Route::resource('/tickets', TicketController::class);
+Route::resource('/comments', CommentController::class);
 
 require __DIR__.'/auth.php';

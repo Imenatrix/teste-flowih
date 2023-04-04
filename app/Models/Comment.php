@@ -19,4 +19,10 @@ class Comment extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
+
+    protected $fillable = [
+        'body',
+        'ticket_id',
+        'user_id'
+    ];
 }
