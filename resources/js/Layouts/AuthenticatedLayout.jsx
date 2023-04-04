@@ -40,12 +40,18 @@ export default function Authenticated({ user, header, children }) {
                                 </div>
                             }
                             <div className="flex-1"></div>
-                            {!user &&
+                            {!user && <>
                                 <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                     <NavLink href={route('login')} active={route().current('login')}>
                                         Login
                                     </NavLink>
                                 </div>
+                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <NavLink href={route('register')} active={route().current('register')}>
+                                        Register
+                                    </NavLink>
+                                </div>
+                            </>
                             }
                         </div>
                         
@@ -149,13 +155,18 @@ export default function Authenticated({ user, header, children }) {
                                 </ResponsiveNavLink>
                             </div>
                         </div>
-                    :
+                    : <>
                         <div className="pt-4 pb-1 border-t border-gray-200">
                             <ResponsiveNavLink method="get" href={route('login')} as="button">
                                 Login
                             </ResponsiveNavLink>
                         </div>
-                    }
+                        <div className="pt-4 pb-1 border-t border-gray-200">
+                            <ResponsiveNavLink method="get" href={route('register')} as="button">
+                                Register
+                            </ResponsiveNavLink>
+                        </div>
+                    </>}
                 </div>
             </nav>
 
