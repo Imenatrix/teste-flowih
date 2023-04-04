@@ -38,7 +38,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        $ticket = Ticket::with('comments')->find($ticket->id);
+        $ticket = Ticket::with('comments', 'comments.user')->find($ticket->id);
         return Inertia::render('Ticket/Show', ['ticket' => $ticket]);
     }
 

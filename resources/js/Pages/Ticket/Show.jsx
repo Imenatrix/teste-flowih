@@ -21,7 +21,7 @@ export default function (props) {
                     <div className='p-3 space-y-3'>
                         {ticket.comments.map(comment => (
                             <div>
-                                <div>{new Date(ticket.comments[0].created_at).toLocaleString()}</div>
+                                <div>{comment.user.name} - {new Date(ticket.comments[0].created_at).toLocaleString()}</div>
                                 <div className='p-3 text-gray-600'>{comment.body}</div>
                                 <hr className='border-gray-300'/>
                             </div>
